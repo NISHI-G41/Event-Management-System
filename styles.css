@@ -538,3 +538,73 @@ body {
         grid-template-columns: 1fr;
     }
 }
+.upcoming-events-section {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    font-family: Arial, sans-serif;
+}
+
+.upcoming-events-section h2,
+.upcoming-events-section h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.events-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.events-list li {
+    background: #f9f9f9;
+    margin-bottom: 12px;
+    padding: 15px;
+    border-left: 5px solid #4CAF50;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #444;
+}
+
+.events-list li strong {
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+.event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.event-form input,
+.event-form button {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    outline: none;
+    transition: 0.3s;
+}
+
+.event-form input:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+.event-form button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.event-form button:hover {
+    background: #45a049;
+}
