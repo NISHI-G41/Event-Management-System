@@ -250,3 +250,9 @@ function addLoadingAnimation() {
 
 // Initialize animations
 setTimeout(addLoadingAnimation, 100);
+// Load saved events on page load
+document.addEventListener("DOMContentLoaded", () => {
+    const savedEvents = JSON.parse(localStorage.getItem("upcomingEvents")) || [];
+    savedEvents.forEach(event => displayEvent(event));
+});
+
