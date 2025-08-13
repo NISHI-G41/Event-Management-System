@@ -38,7 +38,19 @@
             <a href="signup.html" class="cta-button">Get Started</a>
         </div>
     </section>
+<section class="upcoming-events-section">
+    <h2 id="upcomingTitle">Upcoming Events</h2>
+    <ul id="upcomingEventsList" class="events-list"></ul>
 
+    <h3>Add New Event</h3>
+    <form id="addEventForm" class="event-form">
+        <input type="text" id="eventTitle" placeholder="Event Title" required>
+        <input type="date" id="eventDate" required>
+        <input type="number" id="eventPeople" placeholder="Number of People" required>
+        <input type="text" id="eventLocation" placeholder="Location" required>
+        <button type="submit">Add Event</button>
+    </form>
+</section>
     <!-- Events Section -->
     <section id="events" class="events-section">
         <div class="container">
@@ -95,5 +107,8 @@
     </footer>
 
     <script src="script.js"></script>
+
+
 </body>
+
 </html>
