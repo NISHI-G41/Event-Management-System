@@ -144,3 +144,144 @@ formInputs.forEach(input => {
         }
     });
 });
+// Add new event
+function addEvent() {
+    const name = document.getElementById("eventName").value.trim();
+    const date = document.getElementById("eventDate").value;
+    const desc = document.getElementById("eventDescription").value.trim();
+
+    if (!name || !date) {
+        alert("Please fill out the event name and date.");
+        return;
+    }
+
+    const event = { name, date, desc };
+    const events = JSON.parse(localStorage.getItem("upcomingEvents")) || [];
+    events.push(event);
+    localStorage.setItem("upcomingEvents", JSON.stringify(events));
+
+    displayEvent(event);
+
+    // Clear form fields
+    document.getElementById("eventName").value = "";
+    document.getElementById("eventDate").value = "";
+    document.getElementById("eventDescription").value = "";
+}
+
+// Display event card
+function displayEvent(event) {
+    const container = document.getElementById("upcomingEvents");
+
+    const card = document.createElement("div");
+    card.classList.add("event-card");
+
+    card.innerHTML = `
+        <div class="event-title">${event.name}</div>
+        <div class="event-date">${new Date(event.date).toDateString()}</div>
+        <div class="event-desc">${event.desc || "No description provided."}</div>
+    `;
+
+    container.appendChild(card);
+}
+// Upcoming Events Management
+document.addEventListener('DOMContentLoaded', function () {
+    const addEventForm = document.getElementById('addEventForm');
+    const upcomingEventsList = document.getElementById('upcomingEventsList');
+
+    function loadUpcomingEvents() {
+        const events = JSON.parse(localStorage.getItem('upcomingEvents')) || [];
+        upcomingEventsList.innerHTML = '';
+        events.forEach(event => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <strong>${event.title}</strong> <br>
+                📅 Date: ${event.date} <br>
+                👥 People Attending: ${event.people} <br>
+                📍 Location: ${event.location}
+            `;
+            upcomingEventsList.appendChild(li);
+        });
+    }
+
+    if (addEventForm) {
+        addEventForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const title = document.getElementById('eventTitle').value;
+            const date = document.getElementById('eventDate').value;
+            const people = document.getElementById('eventPeople').value;
+            const location = document.getElementById('eventLocation').value;
+
+            if (!title || !date || !people || !location) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            const events = JSON.parse(localStorage.getItem('upcomingEvents')) || [];
+            events.push({ title, date, people, location });
+            localStorage.setItem('upcomingEvents', JSON.stringify(events));
+
+            addEventForm.reset();
+            loadUpcomingEvents();
+        });
+    }
+
+    loadUpcomingEvents();
+});
+// Upcoming Events Management
+document.addEventListener('DOMContentLoaded', function () {
+    const addEventForm = document.getElementById('addEventForm');
+    const upcomingEventsList = document.getElementById('upcomingEventsList');
+    const upcomingTitle = document.getElementById('upcomingTitle'); // Title element
+
+    // Function to load and display events
+    function loadUpcomingEvents() {
+        const events = JSON.parse(localStorage.getItem('upcomingEvents')) || [];
+        upcomingEventsList.innerHTML = '';
+
+        // Update title with the latest event
+        if (events.length > 0) {
+            upcomingTitle.textContent = `Upcoming Events (Latest: ${events[events.length - 1].title})`;
+        } else {
+            upcomingTitle.textContent = "Upcoming Events";
+        }
+
+        // Show list
+        events.forEach(event => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <strong>${event.title}</strong> <br>
+                📅 Date: ${event.date} <br>
+                👥 People Attending: ${event.people} <br>
+                📍 Location: ${event.location}
+            `;
+            upcomingEventsList.appendChild(li);
+        });
+    }
+
+    // Handle Add Event Form
+    if (addEventForm) {
+        addEventForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const title = document.getElementById('eventTitle').value.trim();
+            const date = document.getElementById('eventDate').value;
+            const people = document.getElementById('eventPeople').value.trim();
+            const location = document.getElementById('eventLocation').value.trim();
+
+            if (!title || !date || !people || !location) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            const events = JSON.parse(localStorage.getItem('upcomingEvents')) || [];
+            events.push({ title, date, people, location });
+            localStorage.setItem('upcomingEvents', JSON.stringify(events));
+
+            addEventForm.reset();
+            loadUpcomingEvents(); // Show instantly & update title
+        });
+    }
+
+    // Load events on page load
+    loadUpcomingEvents();
+});
